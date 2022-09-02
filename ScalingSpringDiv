@@ -1,0 +1,61 @@
+export const SpringText = (props: {
+        start: boolean;
+        children: React.ReactNode;
+        stiffness?: number;
+        damping?: number;
+        animationDelay?: number;
+    }) => {
+        // Default values if no spring parameters were assigned
+        let stiffness = 180;
+        let damping = 10;
+
+        // Assign values for ../spring.ts parameters 
+        if (props.stiffness) {
+            stiffness = props.stiffness;
+        }
+
+        if (props.damping) {
+            damping = props.damping;
+        }
+        // Hook to reference the animation container div as a means to animate
+        const animationDiv = React.useRef<HTMLDivElement>(null);
+
+        // Ensures text stay hidden until the animations is triggered
+        const animationDivStyle: React.CSSProperties = {
+            transform: 'scale(0)',
+        };
+
+        let index = 0;
+
+        // UseEffect gets called when the start prop changes. Prevents other state variables that are passed in as props from triggering the animation again
+        React.useEffect(() => {
+
+            const animate = () => {
+                index++;
+
+                if (animationDiv.current) {
+                    // Obtain the values for the changing CSS property at a given frame (positionIndex). Value is obtained by using the ../spring.ts function
+                    const scaleAttributeX = animation.spring(index / 3, stiffness, damping, 0, 1);
+
+                    const scaleAttributeY = animation.spring(index / 2, stiffness, damping, 0, 1);
+
+                    animationDiv.current.style.transform = `scale(${scaleAttributeX},${scaleAttributeY})`;
+                }
+
+                // Break loop if positionIndex goes over 600. Animation only has 600 frames
+                if (index <= 600) {
+                    requestAnimationFrame(animate);
+                }
+            };
+
+            // Trigger animation
+            if (props.start) {
+                setTimeout(animate, props.animationDelay);
+            }
+        }, [props.start]);
+
+        //Return
+        return <div className="animation-container" style={animationDivStyle} ref={animationDiv}>
+            {props.children}
+        </div>;
+    };
