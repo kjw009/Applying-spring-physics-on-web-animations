@@ -1,3 +1,16 @@
+/**
+     * Elements will be animated based on spring dynamics by using positions calculated by the ../spring.ts function defined by the input parameters.
+     * @param props Defines the animation and what elements will be animated. 
+     * start Determines if the animation occurs or not. If the animation is wanted to start by an event, pass a boolean state variable that changes to true when said event occurs. Else assign {true] as the prop.
+     * CSSProperty Passed property to be animated
+     * children Elements to be passed in that will get animated
+     * initialAttributeValue Start value of the given CSS property
+     * finalAttributeValue End value of the given CSS property
+     * stiffness How strong the model be spring will be.Higher values will appear as a faster animation.If no value is assigned, default value will be used.
+     * damping How strong the frictional force be that act against the modeled spring.Higher values will output less "bounces".If no value is assigned, default value will be used.
+     * animationDelay Optional prop that determines the delay before the animation begins
+     * onAnimmationEnd Optional prop that get called if passed in. Can be used into to have an additional fade in transition or to reveal text
+     */
 export const SpringAnimation = (props: {
         start: boolean
         children: React.ReactNode;
