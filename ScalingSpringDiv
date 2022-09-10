@@ -1,3 +1,9 @@
+ /**
+     * Animates texts or elements to materialize using spring dynamics
+     * @param props Defines how the animation is played
+     * start is a boolean that determines whether the animation starts. If the animation is wanted to trigger after an event, pass in a state boolean variable the changes to true from false, once the event has occurred
+     * animationDelay determines how long until the animation begins
+     */
 export const SpringText = (props: {
         start: boolean;
         children: React.ReactNode;
