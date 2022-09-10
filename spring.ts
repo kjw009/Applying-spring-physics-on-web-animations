@@ -1,3 +1,11 @@
+  /**
+ * Returns a value or position at a given frame to be used for spring-like animation
+ * @frame Calculates the value/position at the given frame
+ * @param springContant How stiff/strong the virtual spring is to model the animation
+ * @param dampingRatio How strong the frictional forces that act against the spring
+ * @param initalAttributeValue The start value of the CSS attribute that will be animated
+ * @param finalAttributeValue The final value of the CSS attribute that will be animated
+ */
 export function spring(
         frame:number,
         springContant: number,
